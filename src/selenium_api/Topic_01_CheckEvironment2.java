@@ -29,6 +29,8 @@ public class Topic_01_CheckEvironment2 {
 				driver.get("https://www.google.com/");
 				driver.manage().window().maximize();
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);*/
+			
+			// Update
   }
   
   @Test

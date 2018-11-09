@@ -181,7 +181,8 @@ public class Topic_02_Xpath {
 	 //Step 08 - Kiểm tra hệ thống navigate về Home page sau khi logout thành công
 	 Assert.assertTrue(driver.findElement(By.xpath("//h2[contains(text(),'This is demo site for')]")).isDisplayed());
 	}
-
+  
+  	//Update commit
 
 
   @AfterClass

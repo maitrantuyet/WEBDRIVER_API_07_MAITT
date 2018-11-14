@@ -150,7 +150,7 @@ public class Topic_02_Xpath {
   
   @Test
   public void TC_06_RegisterToSystem() {
-	  String firstname ="Selenium", lastname = "online 07", email = "seleniumonline" + randomEmail() + "@gmail.com", password = "123123";
+	  String firstname ="Selenium", lastname = "online 07", email = "seleniumonline" + Commons.randomEmail() + "@gmail.com", password = "123123";
 	  System.out.println("Email random =" + email);
 	  //Step 01 - Truy cập vào trang: http://live.guru99.com/
 	 driver.get("http://live.guru99.com/");
@@ -190,11 +190,5 @@ public class Topic_02_Xpath {
 	  driver.quit();
   }
   
-  public int randomEmail() {
-	  Random random = new Random();
-	  int number = random.nextInt(999999);
-	  System.out.print("Random number = " + number);
-	  return number;
-  }
-
+ 
 }

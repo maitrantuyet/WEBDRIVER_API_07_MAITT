@@ -13,12 +13,12 @@ import org.testng.annotations.Test;
 public class Topic_04_HandleTextboxTextarea {
 	WebDriver driver;
 	private String newName, newDob, newAddress, newCity, newState, newPin, newMobile, newEmail, password;
-	private String editAddress, editCity, editState, editPin, editMobile, editEmail;
+	private String editAddress, editCity, editState, editPin, editMobile, editEmail, customerID;
 	
 	
 	By nameByTextbox = By.xpath("//input[@name='name']");
 	By dobByTextbox = By.xpath("//input[@name='dob']");
-	By addrByTextbox = By.xpath("//textarea[@name='addr']");
+	By addrByTextarea = By.xpath("//textarea[@name='addr']");
 	By cityByTextbox = By.xpath("//input[@name='city']");
 	By stateByTextbox = By.xpath("//input[@name='state']");
 	By pinByTextbox = By.xpath("//input[@name='pinno']");
@@ -65,7 +65,7 @@ public class Topic_04_HandleTextboxTextarea {
 	  
 	  driver.findElement(nameByTextbox).sendKeys(newName);
 	  driver.findElement(dobByTextbox).sendKeys(newDob);
-	  driver.findElement(addrByTextbox).sendKeys(newAddress);
+	  driver.findElement(addrByTextarea).sendKeys(newAddress);
 	  driver.findElement(cityByTextbox).sendKeys(newCity);
 	  driver.findElement(stateByTextbox).sendKeys(newState);
 	  driver.findElement(pinByTextbox).sendKeys(newPin);
@@ -73,10 +73,42 @@ public class Topic_04_HandleTextboxTextarea {
 	  driver.findElement(emailByTextbox).sendKeys(newEmail);
 	  driver.findElement(passwordByTextbox).sendKeys(password);
 	  driver.findElement(submitByButton).click();
+	  
+	  /*Get customerID*/
+	  customerID = driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText();
+	  System.out.println("Customer ID =" + customerID);
+	  
+	  /*Verify Input Data mathching vs Output Data*/
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Customer Name']/following-sibling::td")).getText(), newName);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Birthdate']/following-sibling::td")).getText(), newDob);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Address']/following-sibling::td")).getText(), newAddress);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='City']/following-sibling::td")).getText(), newCity);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='State']/following-sibling::td")).getText(), newState);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Pin']/following-sibling::td")).getText(), newPin);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Mobile No.']/following-sibling::td")).getText(), newMobile);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Email']/following-sibling::td")).getText(), newEmail);
+	  
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Customer Name']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Birthdate']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Address']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='City']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='State']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Pin']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Mobile No.']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Email']/following-sibling::td")).getText());
+	  
 	}
 
   @Test
   public void TC_02_EditCustomer() {
+	  
+	  driver.findElement(By.xpath("//a[text()='Edit Customer']")).click();
+	  driver.findElement(By.xpath("//input[@name='cusid']")).sendKeys(customerID);
+	  driver.findElement(By.xpath("//input[@name='AccSubmit']")).click();
+	  
+	  /*Verify Customer name and Address*/
+	  Assert.assertEquals(driver.findElement(nameByTextbox).getAttribute("value"), newName);
+	  Assert.assertEquals(driver.findElement(addrByTextarea).getText(), newAddress);
 	  
 	}
 

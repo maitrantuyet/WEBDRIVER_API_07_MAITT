@@ -28,7 +28,7 @@ public class Topic_03_WebElement_WebBrowser {
 		By biographyByTextarea = By.xpath("//textarea[@id='bio']");
 		By jobRole02BySelect = By.xpath("//select[@id='job2']");
 		By interestsIsDisabledByCheckbox = By.xpath("//input[@id='check-disbaled']");
-		By silder02ByRange = By.xpath("//input[@id='slider-2']']");
+		By silder02ByRange = By.xpath("//input[@id='slider-2']");
 		By buttonIsDisabledByButton = By.xpath("//button[@id='button-disabled']");
 		
 	
@@ -75,23 +75,29 @@ public class Topic_03_WebElement_WebBrowser {
 			  Assert.assertFalse(isControlEnabled(biographyByTextarea));
 			  Assert.assertFalse(isControlEnabled(jobRole02BySelect));
 			  Assert.assertFalse(isControlEnabled(interestsIsDisabledByCheckbox));
-		//	  Assert.assertFalse(isControlEnabled(silder02ByRange));
+			  Assert.assertFalse(isControlEnabled(silder02ByRange));
 			  Assert.assertFalse(isControlEnabled(buttonIsDisabledByButton));  	  
 		 
 		}
-	  @Test
+	 @Test
 	  public void TC_03_ElementIsSelectedOnPage() {
-		  // Click
 		  
+		 // Click selected
 		  driver.findElement(ageUnder18ByRadio).click();
 		  driver.findElement(interestsDevelopmentByCheckbox).click();
 		  
-		 
-		  //Element is selected
 		  Assert.assertTrue(isControlSelected(ageUnder18ByRadio));
 		  Assert.assertTrue(isControlSelected(interestsDevelopmentByCheckbox));
 		  
-
+		  //Click unselected development
+		  driver.findElement(interestsDevelopmentByCheckbox).click();
+		  Assert.assertFalse(isControlSelected(interestsDevelopmentByCheckbox));
+		  
+		  //Chọn lại 1 lần nữa
+		  if(!isControlSelected(interestsDevelopmentByCheckbox)) {
+			  driver.findElement(interestsDevelopmentByCheckbox).click();
+			  Assert.assertTrue(isControlSelected(interestsDevelopmentByCheckbox));
+		  }
 		 
 		}
 	  
@@ -132,7 +138,7 @@ public class Topic_03_WebElement_WebBrowser {
 			  return true;
 		  }
 		  else {
-			  System.out.println("Element [" + by +"] is not enabled!");
+			  System.out.println("Element [" + by +"] is disabled!");
 			  return false;
 		  }
 		  

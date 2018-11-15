@@ -110,6 +110,35 @@ public class Topic_04_HandleTextboxTextarea {
 	  Assert.assertEquals(driver.findElement(nameByTextbox).getAttribute("value"), newName);
 	  Assert.assertEquals(driver.findElement(addrByTextarea).getText(), newAddress);
 	  
+	  /*Edit Customer - Input Data*/
+	  driver.findElement(addrByTextarea).clear();
+	  driver.findElement(cityByTextbox).clear();
+	  driver.findElement(stateByTextbox).clear();
+	  driver.findElement(pinByTextbox).clear();
+	  driver.findElement(mobileByTextbox).clear();
+	  driver.findElement(emailByTextbox).clear();
+	  driver.findElement(addrByTextarea).sendKeys(editAddress);
+	  driver.findElement(cityByTextbox).sendKeys(editCity);
+	  driver.findElement(stateByTextbox).sendKeys(editState);
+	  driver.findElement(pinByTextbox).sendKeys(editPin);
+	  driver.findElement(mobileByTextbox).sendKeys(editMobile);
+	  driver.findElement(emailByTextbox).sendKeys(editEmail);
+	  driver.findElement(submitByButton).click();
+	  
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Address']/following-sibling::td")).getText(), editAddress);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='City']/following-sibling::td")).getText(), editCity);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='State']/following-sibling::td")).getText(), editState);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Pin']/following-sibling::td")).getText(), editPin);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Mobile No.']/following-sibling::td")).getText(), editMobile);
+	  Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Email']/following-sibling::td")).getText(), editEmail);
+	  
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Address']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='City']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='State']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Pin']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Mobile No.']/following-sibling::td")).getText());
+	  System.out.println(driver.findElement(By.xpath("//td[text()='Email']/following-sibling::td")).getText());
+	  
 	}
 
 

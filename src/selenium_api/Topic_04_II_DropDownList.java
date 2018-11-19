@@ -117,17 +117,21 @@ public class Topic_04_II_DropDownList {
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='app']/div/li[contains (text(),'Third Option')]")).isDisplayed());
 		Thread.sleep(1000); */
 		
-		//jquery-eidtable
+		/* //jquery-eidtable
 		driver.get("http://indrimuska.github.io/jquery-editable-select/");
 		
 		driver.findElement(By.xpath("//div[@id='default-place']/input")).sendKeys("Ford");
 		driver.findElement(By.xpath("//div[@id='default-place']/input")).sendKeys(Keys.TAB);
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='default-place']//li[text() = 'Ford']")).getAttribute("class"),"es-visible selected");
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='default-place']//li[text() = 'Ford']")).getAttribute("class"),"es-visible selected"); */
 		
 		//multiple select
 		driver.get("http://wenzhixin.net.cn/p/multiple-select/docs/");
 		
-		//selectItemInCustomDropDown("//h3[@id = 'the-basics1']", "//p[@id='e1_t']/div", "//p[@id='e1_t']//li", "January");
+		Select select = new Select(driver.findElement(By.xpath("//p[@id='e1_t']/select")));
+		Assert.assertTrue(select.isMultiple());
+		
+		selectItemInCustomDropDown("//h3[@id = 'the-basics1']", "//p[@id='e1_t']/div", "//p[@id='e1_t']//li", "January");
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='app']/div/li[contains (text(),'Third Option')]")).isDisplayed());
 		
 		
 		

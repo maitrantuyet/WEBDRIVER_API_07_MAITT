@@ -24,10 +24,8 @@ public class Topic_05_ButtonRadiobuttonCheckboxAlert {
 
 				driver = new FirefoxDriver();
 				driver.manage().window().maximize();
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-					
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);				
   }
-  
   
   public void TC_01_HandleButton() {
 	  
@@ -96,17 +94,54 @@ public class Topic_05_ButtonRadiobuttonCheckboxAlert {
 	Assert.assertFalse(twoPetrolRadio.isSelected());
   }
 
-  @Test
-  public void TC_05_Alert() {
+ 
+  public void TC_05_Alert() throws Exception {
 	  driver.get("https://daominhdam.github.io/basic-form/index.html");
-	  driver.findElement(By.xpath("//button[text() ='Click for JS Alert']")).click();
+	  By resultMessage = By.xpath("//p[@id='result']");
+	  Alert alert;
+	  String name = "Selenium Online";
 	  
-	  Alert alert = driver.switchTo().alert();
+	  //Practice 01
+	  driver.findElement(By.xpath("//button[text() ='Click for JS Alert']")).click();
+	  Thread.sleep(3000);
+	  
+	  alert = driver.switchTo().alert();
 	  Assert.assertEquals(alert.getText(), "I am a JS Alert");
 	  alert.accept();
+	  Thread.sleep(3000);
 	  
+	  Assert.assertTrue(driver.findElement(resultMessage).getText().equals("You clicked an alert successfully"));
+	  Assert.assertEquals(driver.findElement(resultMessage).getText(), "You clicked an alert successfully");
 	  
+	//Practice 02
+	  driver.findElement(By.xpath("//button[text() ='Click for JS Confirm']")).click();
+	  Thread.sleep(3000);
 	  
+	  Assert.assertEquals(alert.getText(), "I am a JS Confirm");
+	  alert.dismiss();
+	  Thread.sleep(3000);
+	  
+	  Assert.assertTrue(driver.findElement(resultMessage).getText().equals("You clicked: Cancel"));
+	  Assert.assertEquals(driver.findElement(resultMessage).getText(), "You clicked: Cancel");
+	  
+	//Practice 03
+	  driver.findElement(By.xpath("//button[text() ='Click for JS Prompt']")).click();
+	  Thread.sleep(3000);
+	  
+	  Assert.assertEquals(alert.getText(), "I am a JS prompt");
+	  alert.sendKeys(name);
+	  alert.accept();
+	  Thread.sleep(3000);
+	  
+	  Assert.assertEquals(driver.findElement(resultMessage).getText(), "You entered: " + name);
+	  Assert.assertTrue(driver.findElement(resultMessage).getText().equals("You entered: "+ name));
+  }
+  
+  @Test
+  public void TC_06_AuthenticationAlert() {
+	  driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth"); 
+	  
+	  Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Congratulations! You must have the proper credentials.')]")).isDisplayed());
   }
   
   @AfterClass

@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_04_HandleTextboxTextarea {
+public class Topic_04_I_HandleTextboxTextarea {
 	WebDriver driver;
 	private String newName, newDob, newAddress, newCity, newState, newPin, newMobile, newEmail, password;
 	private String editAddress, editCity, editState, editPin, editMobile, editEmail, customerID;

@@ -24,7 +24,7 @@ public class Topic_11_WebDriverWaits {
 	
 		driver = new FirefoxDriver();
 		// khoi tao wait explicit
-		waitExplicit = new WebDriverWait (driver, 30);
+		waitExplicit = new WebDriverWait (driver, 10);
 		driver.manage().window().maximize();		
   }
   
@@ -41,24 +41,60 @@ public class Topic_11_WebDriverWaits {
 	
 	}
 
-
+  
   @Test
-  public void TC_02_ExplicitWait() {
-	  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  public void TC_02_ExplicitWait_Invisible() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	  
+	  		//check visible
+	  waitExplicit.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='start']/button")));
 	  driver.findElement(By.xpath("//*[@id='start']/button")).click();
+	  
+	  
+	  //check invisible
+	  waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='loading']")));
+	  
+	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed()); 
+  }
+  @Test
+  public void TC_03_ExplicitWait_Visible() {
+	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	  
+	  		//check visible
+	  waitExplicit.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='start']/button")));
+	  driver.findElement(By.xpath("//*[@id='start']/button")).click();
+	  
+	  
+	  //check visible
+	  waitExplicit.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")));
+	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed()); 
+  }
+  
+  public void TC_04_DontAppearInDom_Presence() {
+	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	  
+	//check presence (ko co trong DOM) -> failed testcase
+	  waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")));
+	    
   }
   
   @Test
-  public void TC_03_Visible_Presence() {
+  public void TC_05_ExplicitWait_Invisible() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
-	  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	  
+	  		//check visible
+	  waitExplicit.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='start']/button")));
 	  driver.findElement(By.xpath("//*[@id='start']/button")).click();
-	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed()); 
 	  
-	  waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("")));
+	  
+	  //check invisible
+	  waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='loading']")));
+	  
+	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed()); 
   }
   
   @AfterClass

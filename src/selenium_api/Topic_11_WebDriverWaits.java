@@ -3,6 +3,7 @@ package selenium_api;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ public class Topic_11_WebDriverWaits {
 	WebDriver driver;
 	//khai bao
 	WebDriverWait waitExplicit;
+	Date date;
  
   @BeforeClass
   public void beforeClass() {
@@ -42,7 +44,7 @@ public class Topic_11_WebDriverWaits {
 	}
 
   
-  @Test
+  
   public void TC_02_ExplicitWait_Invisible() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -57,7 +59,7 @@ public class Topic_11_WebDriverWaits {
 	  
 	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed()); 
   }
-  @Test
+  
   public void TC_03_ExplicitWait_Visible() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -82,19 +84,35 @@ public class Topic_11_WebDriverWaits {
   }
   
   @Test
-  public void TC_05_ExplicitWait_Invisible() {
+  public void TC_05_InvisibleInDomAndNot() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	  
-	  		//check visible
-	  waitExplicit.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='start']/button")));
-	  driver.findElement(By.xpath("//*[@id='start']/button")).click();
+	  System.out.println("---Start time Hello World---");
+	  System.out.println(date = new Date());
+	  //check invisible (Hello world) -> ko co trong DOM -> pass
+	  waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")));
+	  System.out.println("---End time Hello World---");
+	  System.out.println(date = new Date());
 	  
-	  
-	  //check invisible
+	  System.out.println("---Start time Loading---");
+	  System.out.println(date = new Date());
+	  //check invisible (Hello world) -> ko co trong DOM -> pass
 	  waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='loading']")));
+	  System.out.println("---End time Loading---");
+	  System.out.println(date = new Date());
 	  
-	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed()); 
+	  driver.findElement(By.xpath("//*[@id='start']/button")).click(); 
+	  waitExplicit.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")));
+	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='finish']/h4[text() = 'Hello World!']")).isDisplayed());
+	  
+	  
+	  System.out.println("---Start time Loading---");
+	  System.out.println(date = new Date());
+	  //check invisible (Hello world) -> co trong DOM -> pass
+	  waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='loading']")));
+	  System.out.println("---End time Loading---");
+	  System.out.println(date = new Date());
   }
   
   @AfterClass

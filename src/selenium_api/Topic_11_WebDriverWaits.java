@@ -26,7 +26,7 @@ public class Topic_11_WebDriverWaits {
 	
 		driver = new FirefoxDriver();
 		// khoi tao wait explicit
-		waitExplicit = new WebDriverWait (driver, 10);
+		
 		driver.manage().window().maximize();		
   }
   
@@ -43,7 +43,6 @@ public class Topic_11_WebDriverWaits {
 	
 	}
 
-  
   
   public void TC_02_ExplicitWait_Invisible() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
@@ -83,10 +82,12 @@ public class Topic_11_WebDriverWaits {
 	    
   }
   
-  @Test
+  
   public void TC_05_InvisibleInDomAndNot() {
 	  driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	  
+	  waitExplicit = new WebDriverWait (driver, 10);
 	  
 	  System.out.println("---Start time Hello World---");
 	  System.out.println(date = new Date());
@@ -113,6 +114,15 @@ public class Topic_11_WebDriverWaits {
 	  waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='loading']")));
 	  System.out.println("---End time Loading---");
 	  System.out.println(date = new Date());
+  }
+  
+  @Test
+  public void TC_06_AjaxIconLoading() {
+	  driver.get("http://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
+	  //ImplicitWait
+	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	  //ExplicitWait
+	  waitExplicit = new WebDriverWait (driver, 10);
   }
   
   @AfterClass

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Selenium Advanced Online 07" parallel="false">
+  
+  <test name="Module Login">
+  
+  	<groups>
+ 		 <run>
+  			<include name = "user" /> 
+ 		 </run>
+  	</groups>
+  
+    <classes>
+<!--       <class name="testng.TestNG_01_Annotation"/>  --> 
+      <class name="testng.TestNG_02_Group_Priority"/>
+    </classes>
+  </test> 
+  
+  
+  
+</suite> 

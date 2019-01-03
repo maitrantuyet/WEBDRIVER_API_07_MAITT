@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Selenium Advanced Online 07" parallel="false">
+<suite name="Selenium Advanced Online 07" parallel="tests" thread-count ="3">
+
+  <parameter name ="email" value ="automationclass07@gmail.com" />
+  <parameter name ="pass" value ="123123" />
   
-  <test name="Module Login">
-  
-  	<groups>
- 		 <run>
-  			<include name = "user" /> 
- 		 </run>
-  	</groups>
-  
+  <test name="Run on CHROME">
+  <parameter name ="browser" value ="chrome" />
     <classes>
-<!--       <class name="testng.TestNG_01_Annotation"/>  --> 
-      <class name="testng.TestNG_02_Group_Priority"/>
+      <class name="testng.TestNG_05_Loop"/>
+    </classes>
+  </test> 
+  
+<!--  <test name="Run on FIREFOX">
+  <parameter name ="browser" value ="firefox" />
+    <classes>
+      <class name="testng.TestNG_04_MultiBrowser"/>
     </classes>
   </test> 
   
   
+  <test name="Run on CHROME HEADLESS">
+  <parameter name ="browser" value ="chromeheadless" />
+    <classes>
+      <class name="testng.TestNG_04_MultiBrowser"/>
+    </classes>
+  </test>  -->
   
 </suite> 

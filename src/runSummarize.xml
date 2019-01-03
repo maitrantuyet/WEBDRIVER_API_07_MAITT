@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="RUN SUMMARY">
+
+  <suite-files>
+        <suite-file path="runProductModule.xml" />
+        <suite-file path="runUserModulerunUserModule.xml" />
+    </suite-files>
+  
+  
+</suite> 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Selenium Advanced Online 07" parallel="tests" thread-count ="3">
+
+  <parameter name ="email" value ="automationclass07@gmail.com" />
+  <parameter name ="pass" value ="123123" />
+  
+  <test name="Run on USER module">
+  <parameter name ="browser" value ="chrome" />
+    <classes>
+      <class name="testng.TestNG_06_Dependency"/>
+    </classes>
+  </test> 
+  
+  
+</suite> 
